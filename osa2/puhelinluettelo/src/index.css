@@ -1,0 +1,14 @@
+h1 {
+  color: goldenrod;
+  font-style: italic;
+}
+
+.confirmation {
+color: rgb(0, 126, 0);
+background: lightgrey;
+font-size: 20px;
+border-style: solid;
+border-radius: 5px;
+padding: 10px;
+margin-bottom: 10px;
+}

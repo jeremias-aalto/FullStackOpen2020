@@ -1,0 +1,31 @@
+TEHTÄVÄ 0.4
+
+selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+--> eli selain lähettää POST pyynnön, jolla tekstikenttään kirjoitettu teksti lisätään tietokantaan.
+--> tämän jälkeen selain lataa sivun uudelleen jolloin toistuu esimerkin tapahtumat
+
+
+TEHTÄVÄ 0.5
+
+selain->palvelin: GET https://studies.cs.helsinki.fi/exampleapp/spa
+palvelin-->selain: HTML-koodi
+selain->palvelin: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+palvelin-->selain: main.css
+selain->palvelin: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+palvelin-->selain: spa.js
+
+--> spa.js javascript pyytää json-dataa palvelimelta
+
+selain->palvelin: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+palvelin-->selain: [{"content":"öäå", ... }]
+
+--> json-datan sisältö piirretään näytölle
+
+
+TEHTÄVÄ 0.6
+
+selain->palvelin: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+palvelin-->selain: json-ilmoitus, että komento on mennyt perille
+
+--> sivua ei ladata uudelleen, vaan sivun javascript muokkaa sitä suoraan selaimessa
