@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/api/persons'
+//const baseUrl = 'http://localhost:3001/api/persons'
+const baseUrl = 'https://git.heroku.com/hidden-tundra-33915.git'
 
 const getAll = () => {
   const request = axios.get(baseUrl)
