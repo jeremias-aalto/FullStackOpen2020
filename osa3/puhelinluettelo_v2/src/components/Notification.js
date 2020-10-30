@@ -1,10 +1,7 @@
 import React from 'react'
 
-const Notification = ({ message }) => {
-  if (message === null) {
-    return null
-  }
-
+const ConfirmationMessage = ({ message }) => {
+  if (message === null) {return null}
   return (
     <div className="confirmation">
       {message}
@@ -12,4 +9,13 @@ const Notification = ({ message }) => {
   )
 }
 
-export default Notification
+const ErrorMessage = ({ message }) => {
+  if (message === null) {return null}
+  return (
+    <div className="error">
+      {message}
+    </div>
+  )
+}
+
+export default { ConfirmationMessage, ErrorMessage }

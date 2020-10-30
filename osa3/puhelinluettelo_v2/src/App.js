@@ -13,6 +13,7 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
   const [confirmationMessage, setConfirmationMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -44,13 +45,13 @@ const App = () => {
           setPersons(persons.concat(returnedPerson))
           setNewName('')
           setNewNumber('')
+          setConfirmationMessage(`Added ${newPerson.name}`)
+          setTimeout(() => {setConfirmationMessage(null)}, 3000)
         })
-      setConfirmationMessage(
-        `Added ${newPerson.name}`
-      )
-      setTimeout(() => {
-        setConfirmationMessage(null)
-      }, 3000)
+        .catch( error => {
+          setErrorMessage(`${error.response.data.error}`)
+          setTimeout(() => {setErrorMessage(null)}, 3000)
+        })
     }
   }
 
@@ -59,12 +60,8 @@ const App = () => {
       .deletePerson(id)
       .then(
         setPersons(persons.filter(p => p.id !== id)),
-        setConfirmationMessage(
-          `Deleted ${persons.find(p=>p.id===id).name}`
-        ),
-        setTimeout(() => {
-          setConfirmationMessage(null)
-        }, 3000)
+        setConfirmationMessage(`${persons.find(p=>p.id===id).name} has been deleted`),
+        setTimeout(() => {setConfirmationMessage(null)}, 3000)
       )
   }
   
@@ -72,7 +69,8 @@ const App = () => {
     <div>
       <h1>Phonebook</h1>
       <h3>Add new number</h3>
-      <Notification message={confirmationMessage} />
+      <Notification.ConfirmationMessage message={confirmationMessage} />
+      <Notification.ErrorMessage message={errorMessage} />
       <AddForm newName={newName} newNumber={newNumber} handleNameChange={handleNameChange} handleNumberChange={handleNumberChange} addNumber={addNumber}/>
       <h3>Numbers added</h3>
       <FilterForm persons={persons} filter={newFilter} handleFilterChange={handleFilterChange}/>
