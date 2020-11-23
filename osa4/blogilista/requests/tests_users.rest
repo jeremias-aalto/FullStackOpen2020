@@ -1,0 +1,56 @@
+// VALID USER
+// SHOULD RETURN "201, {CREATED USER}"
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "name": "Jalmari Jännä",
+  "username": "jalmari",
+  "password": "qwerty"
+}
+
+###
+// USERNAME IS REQUIRED
+// SHOULD RETURN "400, User validation failed: username: Path `username` is required."
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "name": "Einari Jännä",
+  "password": "qwerty"
+}
+
+###
+// USERNAME MUST BE UNIQUE
+// SHOULD RETURN "400, User validation failed: username: Error, expected `username` to be unique."
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "name": "Einari Jännä",
+  "username": "jalmari",
+  "password": "qwerty"
+}
+
+###
+// PASSWORD IS REQUIRED
+// SHOULD RETURN "400, Password is required."
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "name": "Einari Jännä",
+  "username": "einari"
+}
+
+###
+// PASSWORD MUST BE AT LEAST 3 CHARACTERS LONG
+// SHOULD RETURN "400, Password must be at least 3 characters long."
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "name": "Einari Jännä",
+  "username": "einari",
+  "password": "qw"
+}

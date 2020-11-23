@@ -1,0 +1,31 @@
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "name": "Jalmari Jännä",
+  "username": "jalmari",
+  "password": "qwerty"
+}
+
+###
+
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "jalmari",
+  "password": "qwerty"
+}
+
+###
+
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbG1hcmkiLCJpZCI6IjVmYmMxYWNjZDJiMTRlMzc3MDQ1MTVmMyIsImlhdCI6MTYwNjE2MzE1OX0.c1vbqFKdUxXoQjod_RgkhGAa0liHLyBS9pRjGY9nTFE
+
+{
+  "title": "Jännä-Blogi",
+  "author": "Jalmari Jännä",
+  "url": "www.jännäblogi.blogspot.com",
+  "likes": "10"
+}

@@ -1,0 +1,42 @@
+// ADDING USER
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "name": "Jalmari Jännä",
+  "username": "jalmari",
+  "password": "qwerty"
+}
+
+###
+// VALID REQUEST
+// SHOULD RETURN "200, {USER AND NEW TOKEN}"
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "jalmari",
+  "password": "qwerty"
+}
+
+###
+// INCORRECT USERNAME
+// SHOULD RETURN "401, Invalid username or password."
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "jalma",
+  "password": "qwerty"
+}
+
+###
+// INCORRECT PASSWORD
+// SHOULD RETURN "401, Invalid username or password."
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "jalmari",
+  "password": "qwer"
+}

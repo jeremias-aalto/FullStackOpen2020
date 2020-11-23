@@ -8,7 +8,7 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "JERMU",
+  "author": "JJ",
   "license": "AAA",
   "dependencies": {
     "cors": "^2.8.5",

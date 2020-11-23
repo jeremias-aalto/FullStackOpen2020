@@ -1,0 +1,86 @@
+// ADDING USER
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+  "name": "Jalmari Jännä",
+  "username": "jalmari",
+  "password": "qwerty"
+}
+
+###
+// GETTING TOKEN
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "jalmari",
+  "password": "qwerty"
+}
+
+###
+// VALID BLOG
+// SHOULD RETURN "201, {CREATED BLOG}"
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbG1hcmkiLCJpZCI6IjVmYmMyNDhjODljY2FmMTc2NDgzZDFjYyIsImlhdCI6MTYwNjE2NTY0OX0.nGTzqoj0Udhe29pAGmUL5cVJa_JtZIpvbtLXIyxPBmg
+
+{
+  "title": "Jännä-Blogi",
+  "author": "Jalmari Jännä",
+  "url": "www.jännäblogi.blogspot.com",
+  "likes": "10"
+}
+
+###
+// TITLE IS REQUIRED
+// SHOULD RETURN "400, Blog validation failed: title: Path `title` is required."
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbG1hcmkiLCJpZCI6IjVmYmMyNDhjODljY2FmMTc2NDgzZDFjYyIsImlhdCI6MTYwNjE2NTY0OX0.nGTzqoj0Udhe29pAGmUL5cVJa_JtZIpvbtLXIyxPBmg
+
+{
+  "author": "Jalmari Jännä",
+  "url": "www.jännäblogi.blogspot.com",
+  "likes": "10"
+}
+
+###
+// URL IS REQUIRED
+// SHOULD RETURN "400, Blog validation failed: url: Path `url` is required."
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbG1hcmkiLCJpZCI6IjVmYmMyNDhjODljY2FmMTc2NDgzZDFjYyIsImlhdCI6MTYwNjE2NTY0OX0.nGTzqoj0Udhe29pAGmUL5cVJa_JtZIpvbtLXIyxPBmg
+
+{
+  "title": "Jännä-Blogi",
+  "author": "Jalmari Jännä",
+  "likes": "10"
+}
+
+###
+// IF LIKES ARE NOT SET, THEY DEFAULT TO 0
+// SHOULD RETURN "201, {CREATED BLOG WITH LIKES: 0}"
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbG1hcmkiLCJpZCI6IjVmYmMyNDhjODljY2FmMTc2NDgzZDFjYyIsImlhdCI6MTYwNjE2NTY0OX0.nGTzqoj0Udhe29pAGmUL5cVJa_JtZIpvbtLXIyxPBmg
+
+{
+  "title": "Jännä-Blogi",
+  "author": "Jalmari Jännä",
+  "url": "www.jännäblogi.blogspot.com"
+}
+
+###
+// INCORRECT TOKEN
+// SHOULD RETURN "401, JWT ERROR"
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer 11111111
+
+{
+  "title": "Jännä-Blogi",
+  "author": "Jalmari Jännä",
+  "url": "www.jännäblogi.blogspot.com",
+  "likes": "10"
+}
